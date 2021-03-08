@@ -1,2 +1,12 @@
-h1 Posts#index
-p Find me in app/views/posts/index.html.slim
+h1
+  | 写真で一言
+table.table
+  tr
+  - @posts.each do |post|
+    td
+      = post.name
+      = attachment_image_tag post, :post_image_id, :fill, 60, 60, format: "jpeg", fallback: "no-image.jpg", size: "100x100"
+    td
+      = attachment_image_tag post, :post_image_id, :fill, 60, 60, format: "jpeg", fallback: "no-image.jpg"
+    td
+      = attachment_image_tag post, :post_image_, :fill, 60, 60, format: "jpeg", fallback: "no-image.jpg"

@@ -12,11 +12,13 @@ html
       header
         .header-content
           = link_to 'Pet_de_A_word', root_path, class: "logo"
-          ul .flex
-            pようこそ、<%= current_user.name %>さん!
-            li = link_to 'マイページ', user_path(current_user)
-            li = link_to '投稿一覧', posts_path
-            li = link_to 'ログアウト', destroy_user_session_path, method: :delete
+          ul.flex
+            li
+              = link_to 'マイページ', user_path(current_user)
+            li
+              = link_to '投稿一覧', posts_path
+            li
+              = link_to 'ログアウト', destroy_user_session_path, method: :delete
     - else
       header
         .header-content

@@ -1,20 +1,27 @@
-h2
-  | 新規会員登録
-= form_with model: @user, url: user_registration_path, local: true do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label "ニックネーム"
-    = f.text_field :name, autofocus: true
-  .field
-    = f.label "メールアドレス"
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label "パスワード(6文字以上)"
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label "パスワード(確認用)"
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "新規登録"
- 
-= link_to "ログインはこちらへ", new_user_session_path
+.container
+.row
+    h2 新規会員登録
+    = form_with model: @user, url: user_registration_path, local: true do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .field
+        = f.label "ニックネーム"
+        = f.text_field :name, autofocus: true
+      .field
+        = f.label "メールアドレス"
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+      .field
+        = f.label "性別"
+        = f.select :gender, User.genders.keys.map {|k| [k, k]}
+      .field
+        = f.label "年齢"
+        = f.select :age, User.ages.keys.map {|k| [k, k]}
+      .field
+        = f.label "パスワード(6文字以上)"
+        = f.password_field :password, autocomplete: "new-password"
+      .field
+        = f.label "パスワード(確認用)"
+        = f.password_field :password_confirmation, autocomplete: "new-password"
+      .actions
+        = f.submit "新規登録"
+
+    = link_to "ログインはこちらへ", new_user_session_path
