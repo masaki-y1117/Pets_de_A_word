@@ -1,2 +1,21 @@
-h1 Users#edit
-p Find me in app/views/users/edit.html.slim
+h1 会員情報編集
+= form_with model: @user, url: user_path(@user), local: true do |f|
+  .field
+    = f.label "ニックネーム"
+    = f.text_field :name, autofocus: true
+  .field
+    = f.label "メールアドレス"
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label "プロフィール画像"
+    = f.attachment_field :profile_image
+  .field
+    = f.label "年齢"
+    = f.select :age, User.ages.keys.map {|k| [k, k]}
+  .field
+    = f.label "プロフィール"
+    = f.text_area :introduction
+  .actions
+    = f.submit "編集内容を保存"
+= link_to "退会", user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }
+

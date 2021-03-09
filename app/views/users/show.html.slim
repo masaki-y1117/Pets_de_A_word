@@ -3,27 +3,29 @@
     h1
       = @user.name
       |さんのページ
-  .col-md-4
-    = attachment_image_tag @user, :profile_image_id, :fill, 60, 60, format: "jpeg", fallback: "no-image.jpg", size: "100x100"
-  .col-md-4
-    p ニックネーム
-    = @user.name
-    p 写真投稿数
-    = @user.post_image.count 
-    p 一言投稿数
-    = link_to @user.comment.count, post_comments_path
-    p プロフィール
-    = @user.introduction
-    
-    - if @user == current_user
-      = link_to "会員情報を編集", edit_user_path(@user)
-      h3 新規投稿
-      = form_with model:@post do |f|
-      .field
-        = f.label "ジャンル"
-        = f.select :genre, Post.genres.keys.map {|k| [k, k]}
-      .field
-        = f.label "投稿写真"
-        = f.attachment_field :post_image
-      .actions
-        = f.submit "写真投稿"
+      
+  .row    
+    .col-md-4
+      = attachment_image_tag @user, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no-image.jpg", size: "100x100"
+    .col-md-4
+      p ニックネーム
+      = @user.name
+      p 写真投稿数
+      = @user.posts.count 
+      p 一言投稿数
+      = link_to @user.comments.count, post_comments_path(:post_id)
+      p プロフィール
+      = @user.introduction
+      
+      - if @user == current_user
+        = link_to "会員情報を編集", edit_user_path(@user)
+        h3 新規投稿
+      = form_with model:@post, url: posts_path, local: true do |f|
+        .field
+          = f.label "ジャンル"
+          = f.select :genre, Post.genres.keys.map {|k| [k, k]}
+        .field
+          = f.label "投稿写真"
+          = f.attachment_field :post_image
+        .actions
+          = f.submit "写真投稿"
