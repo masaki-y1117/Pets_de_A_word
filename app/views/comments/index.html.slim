@@ -1,4 +1,10 @@
-= attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg")
-h1 
-|さんの一言一覧
-p Find me in app/views/comments/index.html.slim
+.container
+  .row
+    .col.text-center.mb-5
+      = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg")
+      = @user.name
+  .row
+    - @comments.each do |comment|
+    /#コメントに紐づく投稿写真
+      = attachment_image_tag(comment.post_id, :post_image, :fill, 50, 50, fallback: "no-image.jpg")
+      = comment.comment

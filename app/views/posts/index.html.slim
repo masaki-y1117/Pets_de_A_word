@@ -1,15 +1,15 @@
-h1 写真で一言
-table
-  tbody
+.container
+  .row
+    h1 写真で一言
+  .row
     - @posts.each do |post|
-      tr
-        td
-          p 
+      .col-md-3
+        = link_to user_path(post.user.id) do
+          h6 
             投稿者 = post.user.name
-          = attachment_image_tag(post, :post_image, :fill, 150, 150, format: "jpeg")
-      - @posts.comments.each do |comment|
-      tr
-        td
-          = attachment_image_tag(post, :post_image, :fill, 30, 30, format: "jpeg")
-          = 
-          =
+        = link_to post_path(post.id) do
+          = attachment_image_tag(post, :post_image, :fill, 180, 180, format: "jpeg")
+    .col-md-3
+      h3 ランキング機能
+  .row
+    .col-md-9.mx-auto = paginate @posts

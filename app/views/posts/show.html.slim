@@ -1,2 +1,23 @@
-h1 Posts#show
-p Find me in app/views/posts/show.html.slim
+.container
+  .row
+    = attachment_image_tag(@post, :post_image, :fill, 200, 200, format: "jpeg")
+  - @post.comments.each do |comment|
+    = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg")
+    p = comment.user.name
+    p = comment.user.gender
+    p = comment.user.age
+    p = comment.comment
+    - if @post.favorited_by?(current_user)
+      p
+        = link_to post_comment_favorites_path(@post, @comments), method: :delete do
+          笑
+          = @post.favorites.count
+    - else
+      p
+        = link_to post_comment_favorites_path(@post), method: :post do
+          笑
+        = @post.favorites.count
+  .row
+    = form_with(model:[@post, @comment], local: true) do |f|
+      = f.text_area :comment
+      = f.submit "投稿する"

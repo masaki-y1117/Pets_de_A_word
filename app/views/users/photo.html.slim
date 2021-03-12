@@ -1,0 +1,12 @@
+.conatiner
+  .row
+    .col.text-center.mb-5
+      = attachment_image_tag @user, :profile_image, :fill, 80, 80, format: "jpeg", fallback: "no-image.jpg", size: "80x80"
+      = @user.name
+      |さんのお題写真
+      
+  .row
+    - @posts.each do |post|
+      .col-md-4.mb-5.text-center
+        = attachment_image_tag post, :post_image, :fill, 150, 150, format: "jpeg", fallback: "no-image.jpg"
+    = paginate @posts

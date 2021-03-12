@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = User.find(params[:id])
   end
   
   def update
@@ -14,6 +15,12 @@ class UsersController < ApplicationController
   end
   
   def destroy
+  end
+  
+  def photo
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.all.order(created_at: :desc)
+    @posts = @user.posts.page(params[:page]).per(6)
   end
   
   private
