@@ -3,8 +3,11 @@
     .col.text-center.mb-5
       = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg")
       = @user.name
-  .row
-    - @comments.each do |comment|
-    /#コメントに紐づく投稿写真
-      = attachment_image_tag(comment.post_id, :post_image, :fill, 50, 50, fallback: "no-image.jpg")
-      = comment.comment
+      | さんの一言一覧
+      
+  - @comments.each do |comment|
+    .row
+      .col-md-6
+        = attachment_image_tag(comment.post, :post_image, :fill, 50, 50, fallback: "no-image.jpg")
+      .col-md-6
+        = comment.comment

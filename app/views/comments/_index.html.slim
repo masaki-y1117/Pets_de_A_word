@@ -1,0 +1,11 @@
+    = attachment_image_tag(post, :post_image, :fill, 200, 200, format: "jpeg")
+    - post.comments.each do |comment|
+      = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg")
+      p = comment.user.name
+      p = comment.user.gender
+      p = comment.user.age
+      p = comment.comment
+      -if comment.user == current_user
+        = link_to "削除", post_comment_path(post, comment), method: :delete, remote: true
+      div id="favorites_buttons_#{comment.id}"
+        = render partial: 'favorites/favorite', locals: { comment: comment, post: post}

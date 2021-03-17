@@ -8,22 +8,19 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    - if user_signed_in?
-      header
-        .header-content
+    header
+      nav.nav-bar.navbar-expand-lg
+        .navbar-brand
           = link_to 'Pet_de_A_word', root_path, class: "logo"
-          ul.flex
+        ul.navbar-nav.ml-auto
+          - if user_signed_in?
             li
               = link_to 'マイページ', user_path(current_user)
             li
               = link_to '投稿一覧', posts_path
             li
               = link_to 'ログアウト', destroy_user_session_path, method: :delete
-    - else
-      header
-        .header-content
-          = link_to 'Pet_de_A_word', root_path, class: "logo"
-          ul.flex
+          - else
             li
               = link_to 'サイトについて', about_path
             li

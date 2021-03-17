@@ -9,10 +9,14 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = @post.id
     @comment.save
-    redirect_to post_path(@post)
+    render :index
   end
   
   def destroy
+   @post = Post.find(params[:post_id])
+   @comment = @post.comments.find(params[:id])
+   @comment.destroy
+    render :index
   end
   
   private

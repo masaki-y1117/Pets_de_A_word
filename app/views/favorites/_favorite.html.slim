@@ -1,0 +1,10 @@
+    - if comment.favorited_by?(current_user)
+      p
+        = link_to post_comment_favorites_path(post, comment), method: :delete, remote: true do
+          笑
+        = comment.favorites.count
+    - else
+      p
+        = link_to post_comment_favorites_path(post, comment), method: :post, remote: true do
+          笑
+        = comment.favorites.count
