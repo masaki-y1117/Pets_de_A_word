@@ -1,1 +1,12 @@
-h1 TOPページ
+.top-image
+  .container
+    .row
+      .col.text-center.mt-5
+        h1 Pets de A word
+    .row.justify-content-center
+      .col-md-8.col-offset-2.text-center.btn.btn-success
+        = link_to "新規登録", new_user_registration_path
+      .col-md-8.text-center.btn.btn-primary
+        = link_to "ログイン", new_user_session_path
+      .col-md-12.text-center
+        h6 新着投稿写真の閲覧以外の機能は新規登録が必要です

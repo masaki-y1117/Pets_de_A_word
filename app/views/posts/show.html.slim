@@ -1,7 +1,9 @@
 .container
   .row
-    #comments_area
-      = render partial: 'comments/index', locals: { post: @post, comments: @comments}
+    .col.text-center
+      #comments_area
+        = render partial: 'comments/index', locals: { post: @post, comments: @comments}
       
   .row
+    .col.text-right
       = render partial: 'comments/form', locals: { post: @post, comment: @comment}

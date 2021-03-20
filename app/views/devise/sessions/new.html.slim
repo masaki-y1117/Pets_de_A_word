@@ -1,20 +1,25 @@
 .container
   .row
-    h2 ログイン
+    .col.text-center.mb-3
+      h2 ログイン
   .row
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      table
-        tr
-          td メールアドレス
-          td = f.email_field :email, autofocus: true, autocomplete: "email"
-        tr
-          td パスワード
-          td = f.password_field :password, autocomplete: "current-password"
-      .field
-      - if devise_mapping.rememberable?
-        .field
-          = f.check_box :remember_me
-          = f.label :パスワードをお忘れの方
-      .actions
-        = f.submit "ログイン"
-      = link_to "新規登録はこちらへ", new_user_registration_path
+    .col.form-group
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        table align="center"
+          tr
+            td メールアドレス
+            td = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+          tr
+            td パスワード
+            td = f.password_field :password, autocomplete: "current-password", class: "form-control"
+          - if devise_mapping.rememberable?
+          tr
+            td = f.label :パスワードをお忘れの方
+            td = f.check_box :remember_me, class: "pull-right"
+          tr
+            td
+            td = f.submit "ログイン"
+          tr
+            td
+            td = link_to "新規登録はこちらへ", new_user_registration_path

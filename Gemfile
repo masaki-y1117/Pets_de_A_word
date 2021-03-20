@@ -71,6 +71,8 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

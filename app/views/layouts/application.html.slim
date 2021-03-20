@@ -8,13 +8,13 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header
+    header.nav-bar
       nav.nav-bar.navbar-expand-lg
         .navbar-brand
           = link_to 'Pet_de_A_word', root_path, class: "logo"
-        ul.navbar-nav.ml-auto
+        ul.nav.justify-content-end
           - if user_signed_in?
-            li
+            li.
               = link_to 'マイページ', user_path(current_user)
             li
               = link_to '投稿一覧', posts_path
@@ -29,4 +29,6 @@ html
               = link_to '新規登録', new_user_registration_path
             li
               = link_to 'ログイン', new_user_session_path
+    p.notice = notice
+    p.alert = alert
     = yield

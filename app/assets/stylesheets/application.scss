@@ -16,3 +16,10 @@
   @import "bootstrap";
   @import 'font-awesome-sprockets';
   @import 'font-awesome';
+  
+  .top-image {
+    height: 100%;
+    background-image: url("top-image.jpg");
+    background-size: cover;
+  }
+  
