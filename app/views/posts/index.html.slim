@@ -9,14 +9,20 @@
           = link_to user_path(post.user.id) do
             h6 = "投稿者#{post.user.name}"
           = link_to post_path(post.id) do
-            = attachment_image_tag(post, :post_image, :fill, 200, 200, format: "jpeg")
+            div = attachment_image_tag(post, :post_image, :fill, 200, 200, format: "jpeg")
           - if post.comments.present?
-            = post.best_favorites_comment.comment
+            .mt-3
+              label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no-image.jpg", size: "30x30")
+              label = post.best_favorites_comment.user.name
+              label = post.best_favorites_comment.user.gender
+              label = post.best_favorites_comment.user.age
+              h4 = post.best_favorites_comment.comment
+              label = "★笑#{post.best_favorites_comment.favorites.count}"
       .col-md-3
         = form_with url: searches_path, method: :get, local: true do |f|
           = f.select :search, Post.genres.keys.map {|k| [k, k]}
           = f.submit '写真検索'
-        h3 いいね数ランキング
+        h3.mt-5 笑い数ランキング
         table
           - @all_ranks.each.with_index(1) do |comment, i|
             tr
@@ -26,4 +32,4 @@
             tr
               td = "笑数#{comment.favorites.count}"
     .row
-      .col-md-9.mx-auto = paginate @posts
+      .col-md-6.mx-auto = paginate @posts

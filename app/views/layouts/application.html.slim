@@ -5,30 +5,30 @@ html
       | PetDeAWord
     = csrf_meta_tags
     = csp_meta_tag
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.nav-bar
-      nav.nav-bar.navbar-expand-lg
-        .navbar-brand
-          = link_to 'Pet_de_A_word', root_path, class: "logo"
-        ul.nav.justify-content-end
-          - if user_signed_in?
-            li.
-              = link_to 'マイページ', user_path(current_user)
-            li
-              = link_to '投稿一覧', posts_path
-            li
-              = link_to 'ログアウト', destroy_user_session_path, method: :delete
-          - else
-            li
-              = link_to 'サイトについて', about_path
-            li
-              = link_to '投稿一覧', posts_path
-            li
-              = link_to '新規登録', new_user_registration_path
-            li
-              = link_to 'ログイン', new_user_session_path
-    p.notice = notice
-    p.alert = alert
+    header
+      nav.nav-bar.navbar-expand-lg.navbar-light
+        .container.d-flex
+          = link_to 'Pet_de_A_word', root_path, class: "logo navbar-brand p-3"
+          .collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+              - if user_signed_in?
+                li
+                  = link_to 'マイページ', user_path(current_user), class:"btn-outline-secondary mr-3"
+                li
+                  = link_to '投稿一覧', posts_path, class:"btn-outline-secondary mr-3"
+                li
+                  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn-outline-secondary"
+              - else
+                li
+                  = link_to 'サイトについて', about_path, class:"btn-outline-secondary mr-2"
+                li
+                  = link_to '投稿一覧', posts_path, class:"btn-outline-secondary mr-2"
+                li
+                  = link_to '新規登録', new_user_registration_path, class:"btn-outline-secondary mr-2"
+                li
+                  = link_to 'ログイン', new_user_session_path, class:"btn-outline-secondary "
     = yield

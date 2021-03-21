@@ -9,25 +9,25 @@
         table align="center"
             tr
               td ニックネーム
-              td = f.text_field :name, autofocus: true, class: "form-control"
+              td = f.text_field :name, autofocus: true, class: "form-control mb-1"
             tr
               td メールアドレス
-              td = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+              td = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-1"
             tr
               td 性別
-              td = f.select :gender, User.genders.keys.map {|k| [k, k]}
+              td = f.select :gender, User.genders.keys.map {|k| [k, k]}, class: "form-control mb-1"
             tr
               td 年齢
-              td = f.select :age, User.ages.keys.map {|k| [k, k]}
+              td = f.select :age, User.ages.keys.map {|k| [k, k]}, class: "form-control mb-1"
             tr
               td パスワード(6文字以上)
-              td = f.password_field :password, autocomplete: "new-password", class: "form-control"
+              td = f.password_field :password, autocomplete: "new-password", class: "form-control mb-1"
             tr
               td パスワード(確認用)
-              td = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+              td = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-1"
             tr
               td
-              td = f.submit "新規登録", class: "btn, btn-success"
+              td = f.submit "新規登録", class: "btn btn-success mb-1"
             tr
               td
               td = link_to "ログインはこちらへ", new_user_session_path

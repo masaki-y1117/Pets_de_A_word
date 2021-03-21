@@ -12,13 +12,13 @@
       table
         tr
           th ニックネーム
-          td  = @user.name
+          td = @user.name
         tr
           th 写真投稿数
-          td  = link_to @user.posts.count, user_photo_path(@user)
+          td = link_to @user.posts.count, user_photo_path(@user)
         tr
           th 一言投稿数
-          td  = link_to @user.comments.count, user_comments_path(@user)
+          td = link_to @user.comments.count, user_comments_path(@user)
         tr
           th プロフィール
           td = @user.introduction
