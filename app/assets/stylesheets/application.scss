@@ -27,9 +27,11 @@
     width: 100%;
     height: 650px;
     font-family: 'Yu Mincho';
-     background: radial-gradient(
-		#89d37a,
-		#f9ed7d);
+    background-image: url("tree.jpg");
+  }
+  
+  .container {
+    opacity: 0.9;
   }
   
   .top-image {

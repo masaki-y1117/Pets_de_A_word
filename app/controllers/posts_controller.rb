@@ -8,7 +8,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.all
+    @comments = Comment.all.order(created_at: :desc)
+    @comments = Comment.page(params[:page]).per(5)
     @comment = Comment.new
   end
 

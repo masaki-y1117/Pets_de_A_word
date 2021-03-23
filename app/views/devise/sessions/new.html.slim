@@ -1,12 +1,13 @@
 .container
   .row
-    .col.text-center.mb-3
+    .col.text-center.mt-5.mb-5
+      p.notice = notice
+      p.alert = alert
       h2 ログイン
   .row
     .col.form-group
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        = render "devise/shared/error_messages", resource: resource
-        table align="center"
+        table.mx-auto
           tr
             td メールアドレス
             td = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-1"

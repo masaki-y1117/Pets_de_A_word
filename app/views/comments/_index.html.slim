@@ -1,5 +1,5 @@
     div = attachment_image_tag(post, :post_image, :fill, 200, 200, format: "jpeg")
-    - post.comments.each do |comment|
+    - comments.each do |comment|
       label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size: '30x30')
       label = comment.user.name
       label = comment.user.gender

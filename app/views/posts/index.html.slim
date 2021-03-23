@@ -1,5 +1,5 @@
 .post-index
-  .container
+  .container.bg-light.rounded.p-5
     .row
       .col-md-9.text-center.mb-5
         h1 写真で一言
@@ -9,10 +9,10 @@
           = link_to user_path(post.user.id) do
             h6 = "投稿者#{post.user.name}"
           = link_to post_path(post.id) do
-            div = attachment_image_tag(post, :post_image, :fill, 200, 200, format: "jpeg")
+            div = attachment_image_tag(post, :post_image, :fill, 220, 220, format: "jpeg", class: "rounded")
           - if post.comments.present?
             .mt-3
-              label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no-image.jpg", size: "30x30")
+              label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no-image.jpg", size: "30x30", class: "rounded-circle")
               label = post.best_favorites_comment.user.name
               label = post.best_favorites_comment.user.gender
               label = post.best_favorites_comment.user.age
@@ -30,6 +30,6 @@
               td
                 = link_to comment.comment, post_path(comment.post)
             tr
-              td = "笑数#{comment.favorites.count}"
+              td = "★笑数#{comment.favorites.count}"
     .row
       .col-md-6.mx-auto = paginate @posts

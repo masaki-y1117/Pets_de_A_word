@@ -1,30 +1,31 @@
 .container
+  p.alert = alert
   .row
     .col.text-center.mb-3
       h1 会員情報編集
   .row
     .col.form-group
       = form_with model: @user, url: user_path(@user), local: true do |f|
-        table align="center"
+        table.mx-auto
           tr
             td = f.label "ニックネーム"
-            td = f.text_field :name, autofocus: true, class: "form-control"
+            td = f.text_field :name, autofocus: true, class: "form-control mb-1"
           tr
             td = f.label "メールアドレス"
-            td = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+            td = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-1"
           tr
             td = f.label "プロフィール画像"
-            td = f.attachment_field :profile_image, class: "form-control-file"
+            td = f.attachment_field :profile_image, class: "form-control-file mb-1"
           tr
             td = f.label "年齢"
-            td = f.select :age, User.ages.keys.map {|k| [k, k]}
+            td = f.select :age, User.ages.keys.map {|k| [k, k]}, class: "mb-1"
           tr
             td = f.label "プロフィール"
-            td = f.text_area :introduction, class: "form-control"
+            td = f.text_area :introduction, class: "form-control mb-1"
           tr
             td
-            td = f.submit "編集内容を保存", class: "form-control"
+            td = f.submit "編集内容を保存", class: "btn btn-success form-control mb-1"
           tr
             td
-            td = link_to "退会", user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn-success"
+            td = link_to "退会", user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger"
       

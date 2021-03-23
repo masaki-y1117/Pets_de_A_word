@@ -1,13 +1,15 @@
-.container
+.container.bg-light.rounded.p-5
+  p.notice = notice
+  p.alert = alert
   .row
     .col.text-center.mb-5
       h3
         = @user.name
         |さんのページ
         
-  .row
-    .col-md-6.text-center
-      = attachment_image_tag @user, :profile_image, :fill, 60, 60, format: "jpeg", fallback: "no-image.jpg", size: "100x100"
+  .row.mt-5.text-center
+    .col-md-6
+      = attachment_image_tag @user, :profile_image, :fill, 120, 120, format: "jpeg", fallback: "no-image.jpg", size: "120x120", class: "rounded-circle"
     .col-md-6
       table
         tr
@@ -22,13 +24,15 @@
         tr
           th プロフィール
           td = @user.introduction
-      - if @user == current_user
-        .btn = link_to "会員情報を編集", edit_user_path(@user)
+        tr
+          - if @user == current_user
+            th
+            td = link_to "会員情報を編集", edit_user_path(@user), class: "btn btn-success"
   - if @user == current_user
     .row.mt-5
       .col-md-6.text-center.mt-5
         h3 新規投稿
-      .col-md-6
+      .col-md-6.mt-5
         = form_with model:@post, url: posts_path, local: true do |f|
           .field
             = f.label "ジャンル"

@@ -1,11 +1,14 @@
-.container
+.container.bg-light.rounded.p-5
   p.notice = notice
   p.alert = alert
   .row
     .col.text-center
       #comments_area
         = render partial: 'comments/index', locals: { post: @post, comments: @comments}
-      
+
   .row
     .col.text-right
       = render partial: 'comments/form', locals: { post: @post, comment: @comment}
+
+  .row
+    .col-md-12.text-center = paginate @comments

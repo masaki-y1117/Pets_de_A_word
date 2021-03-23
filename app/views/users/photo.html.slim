@@ -8,5 +8,6 @@
   .row
     - @posts.each do |post|
       .col-md-4.mb-5.text-center
-        = attachment_image_tag post, :post_image, :fill, 150, 150, format: "jpeg", fallback: "no-image.jpg"
+        = link_to post_path(post) 
+          = attachment_image_tag post, :post_image, :fill, 200, 200, format: "jpeg"
     = paginate @posts
