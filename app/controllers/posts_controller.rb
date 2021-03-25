@@ -2,15 +2,16 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
     @posts = Post.page(params[:page]).per(3)
-    @comments = Comment.find(Favorite.group(:comment_id).order('count(comment_id) desc').limit(1).pluck(:comment_id))
     @all_ranks = Comment.find(Favorite.group(:comment_id).order('count(comment_id) desc').limit(5).pluck(:comment_id))
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.all.order(created_at: :desc)
-    @comments = Comment.page(params[:page]).per(5)
+    @comments = @post.comments.all.order(created_at: :desc)
+    @comments = @post.comments.page(params[:page]).per(1)
     @comment = Comment.new
+    @page = params[:page].blank? ? "1" : params[:page]
+    @comment_count = @comments.counts
   end
 
   def create

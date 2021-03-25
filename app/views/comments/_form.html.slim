@@ -1,3 +1,5 @@
     = form_with(model:[post, comment]) do |f|
       = f.text_area :comment
+      = f.hidden_field :page, :value => @page
+      = f.hidden_field :comment_count, :value => @comment_count 
       = f.submit "一言投稿"

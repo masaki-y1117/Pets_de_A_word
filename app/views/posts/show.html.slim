@@ -4,11 +4,12 @@
   .row
     .col.text-center
       #comments_area
-        = render partial: 'comments/index', locals: { post: @post, comments: @comments}
+        = render partial: 'comments/index', locals: {posts: @posts, post: @post, comments: @comments, comment: @comment}
 
   .row
     .col.text-right
       = render partial: 'comments/form', locals: { post: @post, comment: @comment}
 
   .row
-    .col-md-12.text-center = paginate @comments
+    .col-md-3.mx-auto
+      = paginate @comments, remote: true

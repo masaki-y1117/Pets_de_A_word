@@ -1,11 +1,14 @@
     div = attachment_image_tag(post, :post_image, :fill, 200, 200, format: "jpeg")
     - comments.each do |comment|
-      label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size: '30x30')
+      label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size: '30x30', class: "rounded-circle")
       label = comment.user.name
       label = comment.user.gender
       label = comment.user.age
       h4 = comment.comment
       -if comment.user == current_user
-        = link_to "削除", post_comment_path(post, comment), method: :delete, remote: true
+        = link_to post_comment_path(post, comment), method: :delete, remote: true do
+          = icon 'fas', 'trash-alt', '削除'
+
       div id="favorites_buttons_#{comment.id}"
         = render partial: 'favorites/favorite', locals: { comment: comment, post: post}
+    = paginate comments, remote: true

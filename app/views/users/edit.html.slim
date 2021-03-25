@@ -4,7 +4,7 @@
     .col.text-center.mb-3
       h1 会員情報編集
   .row
-    .col.form-group
+    .col-md-12.form-group
       = form_with model: @user, url: user_path(@user), local: true do |f|
         table.mx-auto
           tr
@@ -25,7 +25,6 @@
           tr
             td
             td = f.submit "編集内容を保存", class: "btn btn-success form-control mb-1"
-          tr
-            td
-            td = link_to "退会", user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger"
+    .col-md-12.text-right
+      = link_to "退会", user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger"
       
