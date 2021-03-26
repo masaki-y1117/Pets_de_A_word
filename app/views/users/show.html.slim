@@ -1,4 +1,4 @@
-.container.bg-light.rounded.p-5
+.container.bg-light.rounded.p-5.mt-5
   p.notice = notice
   p.alert = alert
   .row
@@ -20,7 +20,7 @@
           td = link_to @user.posts.count, user_photo_path(@user)
         tr
           th 一言投稿数
-          td = link_to @user.comments.count, user_comments_path(@user)
+          td = link_to @user.comments.count, user_user_comments_path(@user)
         tr
           th プロフィール
           td = @user.introduction

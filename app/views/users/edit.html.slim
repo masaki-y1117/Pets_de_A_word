@@ -1,4 +1,4 @@
-.container
+.container.mt-5
   p.alert = alert
   .row
     .col.text-center.mb-3
@@ -25,6 +25,6 @@
           tr
             td
             td = f.submit "編集内容を保存", class: "btn btn-success form-control mb-1"
+            
     .col-md-12.text-right
       = link_to "退会", user_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' }, class: "btn btn-danger"
-      

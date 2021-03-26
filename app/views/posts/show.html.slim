@@ -1,15 +1,26 @@
-.container.bg-light.rounded.p-5
+.container.bg-light.rounded.p-5.mt-5
   p.notice = notice
   p.alert = alert
   .row
     .col.text-center
-      #comments_area
-        = render partial: 'comments/index', locals: {posts: @posts, post: @post, comments: @comments, comment: @comment}
+      div = attachment_image_tag(@post, :post_image, :fill, 200, 200, format: "jpeg")
+      - @comments.each do |comment|
+        label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size: '30x30', class: "rounded-circle")
+        label = comment.user.name
+        label = comment.user.gender
+        label = comment.user.age
+        h4 = comment.comment
+        -if comment.user == current_user
+          = link_to post_post_comment_path(@post, comment), method: :delete, local:true do
+            = icon 'fas', 'trash-alt', '削除'
+  
+        div id="favorites_buttons_#{comment.id}"
+          = render partial: 'favorites/favorite', locals: { comment: comment, post: @post}
 
   .row
     .col.text-right
-      = render partial: 'comments/form', locals: { post: @post, comment: @comment}
+      = render partial: 'post_comments/form', locals: { post: @post, comment: @comment}
 
   .row
     .col-md-3.mx-auto
-      = paginate @comments, remote: true
+      = paginate @comments

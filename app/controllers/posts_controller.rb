@@ -1,17 +1,16 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order(created_at: :desc)
-    @posts = Post.page(params[:page]).per(3)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(3)
     @all_ranks = Comment.find(Favorite.group(:comment_id).order('count(comment_id) desc').limit(5).pluck(:comment_id))
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.all.order(created_at: :desc)
-    @comments = @post.comments.page(params[:page]).per(1)
+    @comments = @post.comments.all.order(created_at: :desc).page(params[:page]).per(5)
     @comment = Comment.new
-    @page = params[:page].blank? ? "1" : params[:page]
-    @comment_count = @comments.counts
+    #ページネーション表示
+    #@page = params[:page].blank? ? "1" : params[:page]
+    #@comment_count = @comments.counts
   end
 
   def create
@@ -25,8 +24,7 @@ class PostsController < ApplicationController
 
   def search
     @search = Post.search(params[:search])
-    @searches = @search.all.order(created_at: :desc)
-    @searches = @search.page(params[:page]).per(6)
+    @searches = @search.all.order(created_at: :desc).page(params[:page]).per(6)
   end
 
   private

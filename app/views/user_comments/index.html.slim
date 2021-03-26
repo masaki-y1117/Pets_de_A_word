@@ -1,7 +1,7 @@
-.container
+.container.mt-5
   .row
     .col.text-center.mt-3.mb-5
-      = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg")
+      = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg", class: "rounded-circle")
       h4 = "#{@user.name}さんの一言一覧"
   
   .row
