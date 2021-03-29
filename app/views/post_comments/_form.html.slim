@@ -1,6 +1,3 @@
-    = form_with(model:[post, comment], url: post_post_comments_path(post, comment), local:true) do |f|
+    = form_with(model:[post, comment], url: post_post_comments_path(post, comment), remote:true) do |f|
       = f.text_area :comment
-      /ページネーション表示用
-       = f.hidden_field :page, :value => @page
-       = f.hidden_field :comment_count, :value => @comment_count
       = f.submit "一言投稿"

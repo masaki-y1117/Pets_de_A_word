@@ -10,6 +10,7 @@ class Post < ApplicationRecord
     Post.where(genre: search)
   end
   
+  #投稿一覧ページで投稿写真に対する笑い数がもっとも多い件を表示
   def best_favorites_comment
     Comment.where(post_id: self.id).select('comments.*', 'count(favorites.id) AS favs').left_joins(:favorites).group('comments.id').order('favs desc').first
   end

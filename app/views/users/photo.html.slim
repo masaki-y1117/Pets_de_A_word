@@ -1,13 +1,12 @@
-.conatiner.
+.conatiner.bg-light.rounded.mt-5
   .row
-    .col.text-center.mb-5
-      = attachment_image_tag @user, :profile_image, :fill, 80, 80, format: "jpeg", fallback: "no-image.jpg", size: "80x80", class: "rounded-circle"
-      = @user.name
-      |さんのお題写真
-      
+    .col.text-center.mt-3.mb-5
+      = attachment_image_tag @user, :profile_image, :fill, 50, 50, format: "jpeg", fallback: "no-image.jpg", class: "rounded-circle"
+      h4 = "#{@user.name}さんのお題写真"
+
   .row
     - @posts.each do |post|
       .col-md-4.mb-5.text-center
-        = link_to post_path(post) 
+        = link_to post_path(post)
           = attachment_image_tag post, :post_image, :fill, 200, 200, format: "jpeg"
     = paginate @posts

@@ -1,17 +1,18 @@
-.container.mt-5
+.container.bg-light.rounded.mt-5.p-5
   .row
     .col.text-center.mt-3.mb-5
       = attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg", class: "rounded-circle")
       h4 = "#{@user.name}さんの一言一覧"
   
   .row
-      - @comments.each do |comment|
-        .col-md-6.text-center.mb-5
-          = link_to user_path(comment.post.user) do
-            p = "投稿者#{comment.post.user.name}"
-          = link_to post_path(comment.post.id) do
-            = attachment_image_tag(comment.post, :post_image, :fill, 100, 100, fallback: "no-image.jpg")
-          h5 = comment.comment
+    - @comments.each do |comment|
+      .col-md-6.text-center.mb-5
+        = link_to user_path(comment.post.user) do
+          p.m-0 = "投稿者#{comment.post.user.name}"
+        = link_to post_path(comment.post.id) do
+          = attachment_image_tag(comment.post, :post_image, :fill, 100, 100, fallback: "no-image.jpg")
+        h5 = comment.comment
           
   .row
-    .col-md-9.mx-auto = paginate @comments
+    .col-md-2.mx-auto. 
+      = paginate @comments

@@ -8,9 +8,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments.all.order(created_at: :desc).page(params[:page]).per(5)
     @comment = Comment.new
-    #ページネーション表示
-    #@page = params[:page].blank? ? "1" : params[:page]
-    #@comment_count = @comments.counts
   end
 
   def create
