@@ -4,7 +4,6 @@ FactoryBot.define do
     name {Faker::Name.name}
     password { 'password' }
     password_confirmation { 'password' }
-    age
-    introduction
+    introduction { Faker::Lorem.characters(number: 20) }
   end
 end
