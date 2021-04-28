@@ -23,14 +23,6 @@ describe 'ユーザーログイン前のテスト' do
         click_link '投稿一覧'
         expect(current_path).to eq '/posts'
       end
-      # it '新規登録を押すと、新規登録画面に遷移する' do
-      #   click_link '新規登録'
-      #   expect(current_path).to eq '/users/sign_up'
-      # end
-      # it 'ログインを押すと、ログイン画面に遷移する' do
-      #   click_link 'ログイン'
-      #   expect(current_path).to eq '/users/rog'
-      # end
     end
   end
   
@@ -46,14 +38,6 @@ describe 'ユーザーログイン前のテスト' do
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password]', with: 'password'
       end
-      
-      # it '正しく新規登録される' do
-      #   expect { click_button '新規登録' }.to change(User.all, :count).by(1)
-      # end
-      # it '新規登録後のリダイレクト先が、新規登録出来たユーザーの詳細画面になっている' do
-      #   click_button '新規登録'
-      #   expect(current_path).to eq '/users' + User.last.id.to_s
-      # end
     end
   end
   
@@ -98,11 +82,5 @@ describe 'ユーザーログイン前のテスト' do
       fill_in 'user[password]', with: user.password
       click_button 'ログイン'
     end
-    
-    # context 'ヘッダーの表示を確認' do
-    #   it 'タイトルが表示される' do
-    #     expect(page).to have_content 'Pets_de_A_word'
-    #   end
-    # end
   end
 end
