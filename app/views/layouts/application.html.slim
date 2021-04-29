@@ -10,26 +10,32 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     header
-      nav.nav-bar.navbar-expand-lg.navbar-light
+      nav.nav-bar.navbar-expand.navbar-light
         .container.d-flex
           = link_to 'Pets_de_A_word', root_path, class: "logo navbar-brand p-2"
           .collapse.navbar-collapse
-            ul.navbar-nav.ml-auto
-              - if user_signed_in?
-                li
-                  = link_to 'マイページ', user_path(current_user), class:"btn-outline-secondary mr-3"
-                li
-                  = link_to '投稿一覧', posts_path, class:"btn-outline-secondary mr-3"
-                li
-                  = link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn-outline-secondary"
-              - else
-                li
-                  = link_to 'サイトについて', about_path, class:"btn-outline-secondary mr-2"
-                li
-                  = link_to '投稿一覧', posts_path, class:"btn-outline-secondary mr-2"
-                li
-                  = link_to '新規登録', new_user_registration_path, class:"btn-outline-secondary mr-2"
-                li
-                  = link_to 'ログイン', new_user_session_path, class:"btn-outline-secondary "
+            #sp-menu.navbar-nav.ml-auto
+              ul.navbar-nav
+                - if user_signed_in?
+                  li
+                    = link_to 'マイページ', user_path(current_user), class:"btn-outline-secondary mr-3"
+                  li
+                    = link_to '投稿一覧', posts_path, class:"btn-outline-secondary mr-3"
+                  li
+                    = link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn-outline-secondary"
+                - else
+                  li
+                    = link_to 'サイトについて', about_path, class:"btn-outline-secondary mr-2"
+                  li
+                    = link_to '投稿一覧', posts_path, class:"btn-outline-secondary mr-2"
+                  li
+                    = link_to '新規登録', new_user_registration_path, class:"btn-outline-secondary mr-2"
+                  li
+                    = link_to 'ログイン', new_user_session_path, class:"btn-outline-secondary "
+            #hm-icon
+              = link_to '/', class: 'menu-trigger' do
+                span
+                span
+                span
     = yield
     

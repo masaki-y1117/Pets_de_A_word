@@ -25,6 +25,11 @@ class UsersController < ApplicationController
     @posts = @user.posts.all.order(created_at: :desc)
     @posts = @user.posts.page(params[:page]).per(6)
   end
+  
+  def user_comments
+    @user = User.find(params[:user_id])
+    @comments = @user.comments.order(created_at: :desc).page(params[:page]).per(6)
+  end
 
   private
 
