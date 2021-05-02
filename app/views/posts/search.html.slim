@@ -4,7 +4,7 @@
       h2 = "検索結果：投稿写真はありません"
     - else
       - @searches.each do |search|
-        .col-md-4.mt-3
+        .col-md-4.mt-3.text-center
           = link_to user_path(search.user.id) do
             h6 = "投稿者#{search.user.name}"
           = link_to post_path(search.id) do

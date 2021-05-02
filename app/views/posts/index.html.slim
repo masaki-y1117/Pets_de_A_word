@@ -1,24 +1,10 @@
 .container.bg-light.rounded.p-5.mt-5
   .row
-    .col-md-9.text-center.mb-5
+    .col-md-12.text-center.mb-5
       h1
         span.bg-warning.rounded-pill.p-3 写真で一言
   .row
-    - @posts.each do |post|
-      .col-lg-3
-        = link_to user_path(post.user.id) do
-          h6 = "投稿者#{post.user.name}"
-        = link_to post_path(post.id) do
-          div = attachment_image_tag(post, :post_image, :fill, 220, 220, format: "jpeg", class: "rounded")
-        - if post.comments.present?
-          .mt-3
-            label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no-image.jpg", size: "30x30", class: "rounded-circle")
-            label = post.best_favorites_comment.user.name
-            label = post.best_favorites_comment.user.gender
-            label = post.best_favorites_comment.user.age
-            h4 = post.best_favorites_comment.comment
-            label = "★笑#{post.best_favorites_comment.favorites.count}"
-    .col-lg-3
+    .col-lg-3.text-center
       = form_with url: searches_path, method: :get, local: true do |f|
         = f.select :search, Post.genres.keys.map {|k| [k, k]}
         = f.submit '写真検索'
@@ -31,5 +17,20 @@
               = link_to comment.comment, post_path(comment.post)
           tr
             td = "★笑数#{comment.favorites.count}"
+  
+    - @posts.each do |post|
+      .col-lg-3.text-center
+        = link_to user_path(post.user.id) do
+          h6 = "投稿者#{post.user.name}"
+        = link_to post_path(post.id) do
+          div = attachment_image_tag(post, :post_image, :fill, 220, 220, format: "jpeg", class: "rounded")
+        - if post.comments.present?
+          .mt-3
+            label = attachment_image_tag(@user, :profile_image, :fill, 30, 30, format: "jpeg", fallback: "no-image.jpg", size: "30x30", class: "rounded-circle")
+            label = post.best_favorites_comment.user.name
+            label = post.best_favorites_comment.user.gender
+            label = post.best_favorites_comment.user.age
+            h4 = post.best_favorites_comment.comment
+            label = "★笑#{post.best_favorites_comment.favorites.count}"
   .row
     .col-md-6.mx-auto = paginate @posts
