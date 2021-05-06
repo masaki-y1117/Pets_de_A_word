@@ -9,7 +9,7 @@
         = f.select :search, Post.genres.keys.map {|k| [k, k]}
         = f.submit '写真検索'
       h3.mt-5 笑い数ランキング
-      table
+      table.mx-auto
         - @all_ranks.each.with_index(1) do |comment, i|
           tr
             td = "第#{i}位"
